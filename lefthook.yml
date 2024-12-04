@@ -1,0 +1,24 @@
+# Refer for explanation to following link:
+# https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+
+pre-commit:
+  parallel: true
+  commands:
+    # common rules
+    secretlint:
+      glob: '*'
+      run: npx secretlint --maskSecrets --secretlintignore .gitignore "{staged_files}"
+    formatting:
+      glob: '*.{js,ts,jsx,tsx,md,mdx,json,yml}'
+      run: npx biome format --write "{staged_files}"
+    lint:
+      glob: 'src/**/*.{js,ts,jsx,tsx}'
+      run: npx biome lint --file {staged_files}
+    tsc:
+      glob: 'src/**/*.{js,ts,jsx,tsx}'
+      run: npx tsc --noEmit -p ./tsconfig.json
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: npx commitlint -e

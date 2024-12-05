@@ -2,7 +2,7 @@
 	"name": "Hono-gym",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/index.ts",
+		"dev": "tsx watch src/server.ts",
 		"lint": "biome lint ./src",
 		"lint:fix": "biome lint --apply ./src",
 		"format": "biome format --write ./src",
@@ -10,7 +10,10 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
-		"hono": "^4.6.12"
+		"@hono/zod-openapi": "^0.18.3",
+		"@hono/zod-validator": "^0.4.1",
+		"hono": "^4.6.12",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
@@ -20,7 +23,6 @@
 		"@types/node": "^22.10.1",
 		"lefthook": "^1.8.5",
 		"secretlint": "^9.0.0",
-		"ts-node": "^10.9.2",
 		"tsx": "^4.7.1"
 	}
 }

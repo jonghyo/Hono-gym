@@ -34,4 +34,4 @@ lerna-debug.log*
 .DS_Store
 
 # typescript
-.ts-cache/
+.ts-cache/*

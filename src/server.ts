@@ -11,19 +11,19 @@ baseApp.use('*', prettyJSON())
 baseApp.use('*', logger())
 
 baseApp
-	.doc31('/doc', {
-		openapi: '3.1.0',
-		info: {
-			title: 'API',
-			version: '1.0.0',
-		},
-	})
-	.get(
-		'/ui',
-		swaggerUI({
-			url: '/api/doc',
-		}),
-	)
+  .doc31('/doc', {
+    openapi: '3.1.0',
+    info: {
+      title: 'API',
+      version: '1.0.0',
+    },
+  })
+  .get(
+    '/ui',
+    swaggerUI({
+      url: '/api/doc',
+    }),
+  )
 
 const app = baseApp.route('/web', webRouter)
 
@@ -31,8 +31,8 @@ const port = 3000
 console.log(`Server is running on http://localhost:${port}`)
 
 serve({
-	fetch: app.fetch,
-	port,
+  fetch: app.fetch,
+  port,
 })
 
 export type AppType = typeof app

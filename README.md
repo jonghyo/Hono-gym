@@ -1,8 +1,21 @@
+# Hono Gym
+
+This repo is Qiita Hono OpenAPI Docs & RPC mode w/ [Grouping routes](https://hono.dev/examples/grouping-routes-rpc).
+
+## Installation
+
+```shell
+npm ci
 ```
-npm install
+
+## Run Server
+
+```shell
 npm run dev
 ```
 
-```
-open http://localhost:3000
+## Client demo
+
+```shell
+npx tsx src/client.ts
 ```

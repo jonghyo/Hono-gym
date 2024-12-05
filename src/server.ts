@@ -11,7 +11,7 @@ baseApp.use('*', prettyJSON())
 baseApp.use('*', logger())
 
 baseApp
-	.doc31('/specification', {
+	.doc31('/doc', {
 		openapi: '3.1.0',
 		info: {
 			title: 'API',
@@ -19,9 +19,9 @@ baseApp
 		},
 	})
 	.get(
-		'/doc',
+		'/ui',
 		swaggerUI({
-			url: '/api/specification',
+			url: '/api/doc',
 		}),
 	)
 

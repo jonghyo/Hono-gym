@@ -9,13 +9,13 @@ pre-commit:
       glob: '*'
       run: npx secretlint --maskSecrets --secretlintignore .gitignore "{staged_files}"
     formatting:
-      glob: '*.{js,ts,jsx,tsx,md,mdx,json,yml}'
+      glob: '*.{js,ts,mts,jsx,tsx,md,mdx,json,yml}'
       run: npx biome format --write "{staged_files}"
     lint:
-      glob: 'src/**/*.{js,ts,jsx,tsx}'
+      glob: 'src/**/*.{js,ts,mts,jsx,tsx}'
       run: npx biome lint {staged_files}
     tsc:
-      glob: 'src/**/*.{js,ts,jsx,tsx}'
+      glob: 'src/**/*.{js,ts,mts,jsx,tsx}'
       run: npx tsc --noEmit -p ./tsconfig.json
 commit-msg:
   parallel: true

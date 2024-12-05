@@ -6,7 +6,8 @@
 		"lint": "biome lint ./src",
 		"lint:fix": "biome lint --apply ./src",
 		"format": "biome format --write ./src",
-		"check": "biome check --apply ./src"
+		"check": "biome check --apply ./src",
+		"tsc": "tsc --noEmit -p ./tsconfig.json"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",

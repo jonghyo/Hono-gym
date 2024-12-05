@@ -9,7 +9,7 @@ pre-commit:
       glob: '*'
       run: npx secretlint --maskSecrets --secretlintignore .gitignore {staged_files}
     formatting:
-      glob: '*.{js,ts,mts,jsx,tsx,json}'
+      glob: '*.{js,ts,mts,jsx,tsx}'
       run: npx biome format --write {staged_files}
     lint:
       glob: 'src/**/*.{js,ts,mts,jsx,tsx}'

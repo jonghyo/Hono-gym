@@ -1,33 +1,31 @@
+import { webRouter } from '@/routes/web'
 import { serve } from '@hono/node-server'
-import { zValidator } from '@hono/zod-validator'
-import { Hono } from 'hono'
-import { z } from 'zod'
+import { swaggerUI } from '@hono/swagger-ui'
+import { OpenAPIHono } from '@hono/zod-openapi'
+import { logger } from 'hono/logger'
+import { prettyJSON } from 'hono/pretty-json'
 
-const app = new Hono()
+const baseApp = new OpenAPIHono().basePath('/api')
 
-const schema = z.object({
-	name: z.string().min(1),
-	country: z.string().min(1),
-})
+baseApp.use('*', prettyJSON())
+baseApp.use('*', logger())
 
-const routes = app
-	.get('/', (c) => {
-		console.table(c)
-		return c.text('Hello Qiita AdventCalendar 2024!')
+baseApp
+	.doc31('/specification', {
+		openapi: '3.1.0',
+		info: {
+			title: 'API',
+			version: '1.0.0',
+		},
 	})
-	.get('/api/users', (c) => {
-		return c.json({
-			user: 'foo-users',
-		})
-	})
-	.post('/api/users', zValidator('json', schema), (c) => {
-		const { name, country } = c.req.valid('json')
-		const header = c.req.header()
-		console.log(header)
-		return c.json({
-			message: `Hello, ${name}. Your country is ${country}.`,
-		})
-	})
+	.get(
+		'/doc',
+		swaggerUI({
+			url: '/api/specification',
+		}),
+	)
+
+const app = baseApp.route('/web', webRouter)
 
 const port = 3000
 console.log(`Server is running on http://localhost:${port}`)
@@ -37,6 +35,4 @@ serve({
 	port,
 })
 
-// routesの型を取り、exportしておく
-export type AppType = typeof routes
-export default app
+export type AppType = typeof app
